@@ -13,6 +13,8 @@ repositories {
 
 ext {
     moduleName = "SelenideFour.WebApi.test"
+    allureVer = "2.13.7"
+    resourceFolder = "src/test/resources/"
     groovyVer = "3.0.6"
 }
 
@@ -29,10 +31,6 @@ dependencies {
     testRuntime(group: "org.codehaus.groovy", name: "groovy-json", version: "$groovyVer")
 }
 
-test {
-    useJUnitPlatform()
-}
-
 compileTestJava {
     inputs.property "moduleName", "$moduleName"
     doFirst {
@@ -41,5 +39,22 @@ compileTestJava {
                 "--patch-module", "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath
         ]
         classpath = files()
+        copy {
+            from "$resourceFolder/allure" into "build/resources/test/allure"
+        }
     }
 }
+
+test {
+    useJUnitPlatform()
+}
+
+allure {
+    autoconfigure = true
+    version = "$allureVer";
+
+    useJUnit5 {
+        version = "$allureVer"
+    }
+}
+

@@ -1,5 +1,7 @@
 package reqres.unknown;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Flaky;
 import org.junit.jupiter.api.Test;
 import reqres.unknown.entities.Resource;
 

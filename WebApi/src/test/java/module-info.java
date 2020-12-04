@@ -11,6 +11,8 @@ open module SelenideFour.WebApi.test {
     requires xml.path;
     requires rest.assured.common;
 
+    requires io.qameta.allure.commons;
+    
     requires lombok;
     requires java.validation;
     requires org.hamcrest;
