@@ -24,6 +24,10 @@ public class IsInteger extends BaseMatcher<Integer>
     @Override
     public boolean matches(Object o)
     {
+        if (o instanceof Integer)
+        {
+            return true;
+        }
         try
         {
             Integer.parseInt((String) o);
