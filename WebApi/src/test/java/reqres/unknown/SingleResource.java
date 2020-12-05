@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import reqres.unknown.entities.Resource;
 
 import static io.restassured.RestAssured.given;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class SingleResource extends AbstractResourceApiTest
 {
@@ -20,5 +21,6 @@ public class SingleResource extends AbstractResourceApiTest
                 .extract()
                 .body()
                 .as(Resource.class);
+        assertNotNull(resource);
     }
 }
