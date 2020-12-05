@@ -13,6 +13,7 @@ ext {
     moduleName = "SelenideFour"
     junitVer = "5.7.0"
     cucumberVer = "6.9.0"
+    log4j2Ver = "2.14.0"
 }
 
 allprojects {
@@ -20,8 +21,12 @@ allprojects {
     dependencies {
         testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "$junitVer"
         testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "$junitVer"
+
         testImplementation group: 'io.cucumber', name: 'cucumber-java', version: "$cucumberVer"
+
         testImplementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+        testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "$log4j2Ver"
+        testImplementation group: 'org.apache.logging.log4j', name: 'log4j-jul', version: "$log4j2Ver"
 
         testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "$junitVer"
     }
