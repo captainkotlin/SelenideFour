@@ -1,7 +1,5 @@
 package reqres.unknown;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Flaky;
 import org.junit.jupiter.api.Test;
 import reqres.unknown.entities.Resource;
 
@@ -22,6 +20,5 @@ public class SingleResource extends AbstractResourceApiTest
                 .extract()
                 .body()
                 .as(Resource.class);
-        System.nanoTime();
     }
 }
