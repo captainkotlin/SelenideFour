@@ -40,7 +40,7 @@ compileTestJava {
         ]
         classpath = files()
         copy {
-            from "$resourceFolder/allure" into "build/resources/test/allure"
+            from "$resourceFolder/allure" into "$buildDir/resources/test/allure"
         }
     }
 }

@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "5.3.0"
+    id "io.qameta.allure" version "2.8.1"
 }
 
 group 'org.example'
@@ -9,7 +11,62 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    moduleName = "SelenideFour.WebUi.test"
+    allureVer = "2.13.7"
+    resourceFolder = "src/test/resources/"
+    allureResults="allure-results"
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'com.codeborne', name: 'selenide', version: '5.16.2'
+}
+
+def browserOffset = System.getProperty "selenide.browser"
+
+tasks.register("consoleLauncherTest", JavaExec.class) {
+    dependsOn testClasses
+    def reportsDir = file("$buildDir/$browserOffset/$allureResults")
+    System.setProperty('cucumber.plugin', "junit:$reportsDir/omg.xml")
+    systemProperties = System.getProperties()
+    outputs.dir reportsDir
+    classpath = sourceSets["test"].runtimeClasspath
+    main = "org.junit.platform.console.ConsoleLauncher"
+    args "--scan-classpath"
+    args "--include-engine", "cucumber"
+    args "--reports-dir", reportsDir
+}
+
+compileTestJava {
+    inputs.property "moduleName", "$moduleName"
+    doFirst {
+        options.compilerArgs = [
+                "--module-path", classpath.asPath,
+                "--patch-module", "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath
+        ]
+        classpath = files()
+        copy {
+            from "$resourceFolder/allure" into "$buildDir/resources/test/allure"
+        }
+    }
+}
+
+test {
+    dependsOn(consoleLauncherTest)
+    useJUnitPlatform()
+    //systemProperty 'java.util.logging.manager', 'org.apache.logging.log4j.jul.LogManager'
+    exclude "**/*"
+    reports {
+        junitXml.enabled = false
+    }
+}
+
+allure {
+    version = "$allureVer";
+    useJUnit5 {
+        version = "$allureVer"
+    }
+    resultsDir = file("$buildDir/$browserOffset/$allureResults")
+    reportDir = file("$buildDir/$browserOffset/allure-reports")
 }
 
