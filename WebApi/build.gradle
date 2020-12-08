@@ -54,6 +54,7 @@ compileTestJava {
 }
 
 test {
+    systemProperties System.getProperties()
     testLogging.showStandardStreams = true
     useJUnitPlatform()
 }
