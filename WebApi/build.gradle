@@ -1,61 +1,59 @@
 plugins {
     id 'java'
-    id "io.freefair.lombok" version "5.3.0"
-    id "io.qameta.allure" version "2.8.1"
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
+    jcenter()
+    mavenLocal()
+    maven { url "http://dl.bintray.com/epam/reportportal" }
 }
 
 ext {
     moduleName = "SelenideFour.WebApi.test"
-    allureVer = "2.13.7"
-    resourceFolder = "src/test/resources/"
+    junitVer = "5.7.0"
+    restAssuredVer = "4.3.2"
     groovyVer = "3.0.6"
 }
 
 dependencies {
-    testImplementation (group: 'io.rest-assured', name: 'rest-assured', version: '4.3.2') {
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "$junitVer"
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "$junitVer"
+    testImplementation group: 'org.junit.platform', name: 'junit-platform-console', version: '1.7.0'
+
+    testImplementation(group: 'io.rest-assured', name: 'rest-assured', version: "$restAssuredVer") {
         exclude group: "org.codehaus.groovy"
     }
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
     testImplementation group: 'com.networknt', name: 'json-schema-validator', version: '1.0.45'
     testImplementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
-    testRuntime(group: "org.codehaus.groovy", name: "groovy", version: "$groovyVer")
-    testRuntime(group: "org.codehaus.groovy", name: "groovy-xml", version: "$groovyVer")
-    testRuntime(group: "org.codehaus.groovy", name: "groovy-json", version: "$groovyVer")
+    testImplementation("com.epam.reportportal:agent-java-junit5:$reportPortalAgentVer") {
+        exclude group: "org.aspectj", module: "aspectjrt"
+    }
+    testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "$junitVer"
+    testRuntime group: "org.codehaus.groovy", name: "groovy", version: "$groovyVer"
+    testRuntime group: "org.codehaus.groovy", name: "groovy-xml", version: "$groovyVer"
+    testRuntime group: "org.codehaus.groovy", name: "groovy-json", version: "$groovyVer"
 }
 
 compileTestJava {
     inputs.property "moduleName", "$moduleName"
     doFirst {
-        options.compilerArgs = [
-                "--module-path", classpath.asPath,
-                "--patch-module", "$moduleName=" + files(sourceSets.test.java.srcDirs).asPath
+        options.compilerArgs = [ "--module-path", classpath.asPath,
+                "--add-modules", "org.junit.jupiter.api",
+                "--add-modules", "com.fasterxml.jackson.databind",
+                "--add-modules", "org.apache.logging.log4j",
+                "--add-modules", "lombok",
+                "--add-modules", "java.validation"
         ]
         classpath = files()
-        copy {
-            from "$resourceFolder/allure" into "$buildDir/resources/test/allure"
-        }
     }
 }
 
 test {
+    testLogging.showStandardStreams = true
     useJUnitPlatform()
-    //systemProperty 'java.util.logging.manager', 'org.apache.logging.log4j.jul.LogManager'
 }
-
-allure {
-    autoconfigure = true
-    version = "$allureVer";
-
-    useJUnit5 {
-        version = "$allureVer"
-    }
-}
-

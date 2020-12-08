@@ -1,7 +1,6 @@
 package utils;
 
-import io.cucumber.spring.CucumberContextConfiguration;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.function.Function;
@@ -9,7 +8,7 @@ import java.util.function.Function;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-@Slf4j
+@Log4j2
 public class AbstractTest<Page extends AbstractPage<Page>>
 {
     @Autowired

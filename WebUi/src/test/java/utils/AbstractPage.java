@@ -14,9 +14,8 @@ public abstract class AbstractPage<Page extends AbstractPage<Page>> {
 
     public SelenideElement clickWithScrollTo(SelenideElement webElement)
     {
-        webElement.scrollTo();
-        webElement.click();
-        webElement.click(ClickOptions.usingJavaScript());
+        webElement.scrollTo()
+                .click(ClickOptions.usingJavaScript());
         return webElement;
     }
 }

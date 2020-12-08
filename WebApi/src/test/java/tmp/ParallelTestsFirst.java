@@ -1,10 +1,10 @@
 package tmp;
 
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import web.utils.AbstractTest;
 
-@Slf4j
+@Log4j2
 public class ParallelTestsFirst extends AbstractTest
 {
 

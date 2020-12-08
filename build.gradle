@@ -1,3 +1,7 @@
+import java.util.function.Function
+import java.util.stream.Collectors
+import java.util.stream.Stream
+
 plugins {
     id 'java'
 }
@@ -7,38 +11,42 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven { url "http://dl.bintray.com/epam/reportportal" }
 }
 
 ext {
     moduleName = "SelenideFour"
-    junitVer = "5.7.0"
-    cucumberVer = "6.9.0"
     log4j2Ver = "2.14.0"
+    lombokVer = "1.18.16"
 }
 
 allprojects {
     apply plugin: 'java'
-    dependencies {
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "$junitVer"
-        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "$junitVer"
-        testImplementation group: 'org.junit.platform', name: 'junit-platform-console', version: '1.7.0'
-
-        testImplementation (group: 'io.cucumber', name: 'cucumber-core', version: "$cucumberVer")
-        testImplementation group: 'io.cucumber', name: 'cucumber-java', version: "$cucumberVer"
-        testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '6.9.0'
-        testImplementation group: 'io.cucumber', name: 'cucumber-junit-platform-engine', version: "$cucumberVer"
-
-        testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.1'
-        testImplementation group: 'org.springframework', name: 'spring-beans', version: '5.3.1'
-        testImplementation group: 'org.springframework', name: 'spring-context', version: '5.3.1'
-        testImplementation group: 'io.cucumber', name: 'cucumber-spring', version: '6.9.0'
-        testImplementation group: 'org.springframework.boot', name: 'spring-boot-test', version: '2.4.0'
-        compile group: 'io.qameta.allure', name: 'allure-cucumber-jvm', version: '2.13.7'
-
-        testImplementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
-        testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: "$log4j2Ver"
-        testImplementation group: 'org.apache.logging.log4j', name: 'log4j-jul', version: "$log4j2Ver"
-
-        testRuntime group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "$junitVer"
+    ext {
+        def addModules = this.&addModules
+        reportPortalAgentVer = "5.0.3"
     }
+    configurations.testCompile {
+        exclude group: "org.aspectj", module: "aspectjrt"
+    }
+    dependencies {
+        testImplementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: "$log4j2Ver"
+        testImplementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4j2Ver"
+        testImplementation "com.epam.reportportal:logger-java-log4j:$reportPortalAgentVer"
+
+        testCompileOnly "org.projectlombok:lombok:$lombokVer"
+        testAnnotationProcessor "org.projectlombok:lombok:$lombokVer"
+    }
+}
+
+static List<String> addModules(String... moduleNames)
+{
+    return Arrays.stream(moduleNames)
+            .flatMap(new Function<String, Stream<String>>() {
+                @Override
+                Stream<String> apply(String s) {
+                    return Stream.of("--add-modules", s)
+                }
+            })
+            .collect(Collectors.toList())
 }
