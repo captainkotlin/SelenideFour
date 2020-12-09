@@ -19,6 +19,7 @@ ext {
 }
 
 dependencies {
+    testImplementation fileTree(dir: project.parent.buildDir.absolutePath + "/libs", include: ['*.jar'])
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "$junitVer"
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "$junitVer"
     testImplementation group: 'org.junit.platform', name: 'junit-platform-console', version: '1.7.0'
@@ -43,6 +44,7 @@ compileTestJava {
     inputs.property "moduleName", "$moduleName"
     doFirst {
         options.compilerArgs = [ "--module-path", classpath.asPath,
+                "--add-modules", "selenidefour",
                 "--add-modules", "org.junit.jupiter.api",
                 "--add-modules", "com.fasterxml.jackson.databind",
                 "--add-modules", "org.apache.logging.log4j",

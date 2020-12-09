@@ -4,6 +4,7 @@ import java.util.stream.Stream
 
 plugins {
     id 'java'
+    id 'java-library'
 }
 
 group 'org.example'
@@ -15,8 +16,9 @@ repositories {
 }
 
 ext {
-    moduleName = "SelenideFour"
+    moduleName = "selenidefour"
     log4j2Ver = "2.14.0"
+    guavaVer = "30.0-jre"
     lombokVer = "1.18.16"
 }
 
@@ -30,17 +32,47 @@ allprojects {
         exclude group: "org.aspectj", module: "aspectjrt"
     }
     dependencies {
+        testImplementation fileTree(dir: project.buildDir.absolutePath + "/libs", include: ['*.jar'])
         testImplementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: "$log4j2Ver"
         testImplementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4j2Ver"
         testImplementation "com.epam.reportportal:logger-java-log4j:$reportPortalAgentVer"
+
+        testImplementation group: 'com.google.guava', name: 'guava', version: "$guavaVer"
 
         testCompileOnly "org.projectlombok:lombok:$lombokVer"
         testAnnotationProcessor "org.projectlombok:lombok:$lombokVer"
     }
 }
 
-static List<String> addModules(String... moduleNames)
-{
+dependencies {
+    implementation group: 'org.hamcrest', name: 'hamcrest-core', version: '2.2'
+    implementation group: 'com.google.guava', name: 'guava', version: "$guavaVer"
+}
+
+compileJava {
+    inputs.property "moduleName", "$moduleName"
+    doFirst {
+        options.compilerArgs = ["--module-path", classpath.asPath]
+        classpath = files()
+    }
+}
+
+task commonJar(type: Jar) {
+    def name = "$moduleName"
+    archivesBaseName = "$name"
+    from sourceSets.main.java.outputDir.absolutePath with jar
+    doLast {
+        copy {
+            from "$buildDir/libs/${name}.jar" into "$projectDir/libs"
+        }
+    }
+}
+
+jar {
+    finalizedBy commonJar
+}
+
+static List<String> addModules(String... moduleNames) {
     return Arrays.stream(moduleNames)
             .flatMap(new Function<String, Stream<String>>() {
                 @Override

@@ -1,8 +1,8 @@
 package reqres.users;
 
 import org.junit.jupiter.api.Test;
-import web.utils.matchers.IsInteger;
-import web.utils.matchers.IsZonedDateTime;
+import utils.matchers.ParseableAsInteger;
+import utils.matchers.ParseableAsZonedDateTime;
 
 import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_CREATED;
@@ -21,8 +21,8 @@ public class CreateUser extends AbstractUsersApiTest
                 .expect()
                 .log().all()
                 .statusCode(HTTP_CREATED)
-                .body("id", new IsInteger())
-                .body("createdAt", new IsZonedDateTime())
+                .body("id", new ParseableAsInteger())
+                .body("createdAt", new ParseableAsZonedDateTime())
                 .when()
                 .post();
     }
