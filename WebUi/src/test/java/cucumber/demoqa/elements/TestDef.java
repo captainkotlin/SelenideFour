@@ -1,6 +1,5 @@
-package cucumber.demoqa;
+package cucumber.demoqa.elements;
 
-import cucumber.demoqa.bookstoreapp.draggable.page.SimpleDraggablePage;
 import cucumber.demoqa.bookstoreapp.login.page.LoginPage;
 import cucumber.demoqa.elements.textbox.page.TextBoxPage;
 import io.cucumber.junit.Cucumber;
@@ -11,8 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @RunWith(Cucumber.class)
 @CucumberContextConfiguration
-@CucumberOptions(plugin = { "pretty", "com.epam.reportportal.cucumber.ScenarioReporter" })
-@SpringBootTest(classes = { TextBoxPage.class, LoginPage.class, SimpleDraggablePage.class})
+@CucumberOptions(glue = { "cucumber.demoqa.elements", "cucumber.demoqa.glue" }, plugin = { "pretty", "com.epam.reportportal.cucumber.ScenarioReporter" })
+@SpringBootTest(classes = { TextBoxPage.class, LoginPage.class })
 public class TestDef
 {
 }
