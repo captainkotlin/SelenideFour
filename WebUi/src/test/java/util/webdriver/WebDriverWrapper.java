@@ -1,14 +1,14 @@
-package utils.webdriver;
+package util.webdriver;
 
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class WebDriverUtils extends RemoteWebDriver
+public class WebDriverWrapper extends RemoteWebDriver
 {
     private WebDriver driver;
 
-    public WebDriverUtils()
+    public WebDriverWrapper()
     {
         super();
         driver = WebDriverRunner.getWebDriver();

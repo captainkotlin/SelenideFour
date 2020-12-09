@@ -1,4 +1,4 @@
-package web.utils;
+package web.util;
 
 import io.restassured.RestAssured;
 import io.restassured.config.JsonConfig;

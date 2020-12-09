@@ -3,7 +3,7 @@ package reqres.unknown;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
-import web.utils.AbstractTest;
+import web.util.AbstractTest;
 
 public class AbstractResourceApiTest extends AbstractTest
 {

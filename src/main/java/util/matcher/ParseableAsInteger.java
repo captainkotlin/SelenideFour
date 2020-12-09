@@ -1,9 +1,9 @@
-package utils.matchers;
+package util.matcher;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
-import static utils.matchers.OperationUtils.completesWithoutException;
+import static util.operation.OperationUtils.completesWithoutException;
 
 public class ParseableAsInteger extends BaseMatcher<Integer>
 {

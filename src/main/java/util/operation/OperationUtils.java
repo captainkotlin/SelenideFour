@@ -1,4 +1,4 @@
-package utils.matchers;
+package util.operation;
 
 import java.util.function.Supplier;
 
@@ -14,6 +14,18 @@ public class OperationUtils
         catch (Exception ex)
         {
             return false;
+        }
+    }
+
+    public static <T> void ifException(RunnableEx supplier, Runnable handler)
+    {
+        try
+        {
+            supplier.run();
+        }
+        catch (Exception ex)
+        {
+            handler.run();
         }
     }
 }

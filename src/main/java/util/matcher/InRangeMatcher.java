@@ -1,4 +1,4 @@
-package utils.matchers;
+package util.matcher;
 
 import com.google.common.collect.Sets;
 import org.hamcrest.BaseMatcher;

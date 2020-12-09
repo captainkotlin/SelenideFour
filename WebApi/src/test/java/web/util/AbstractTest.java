@@ -1,4 +1,4 @@
-package web.utils;
+package web.util;
 
 import com.epam.reportportal.junit5.ReportPortalExtension;
 import lombok.extern.log4j.Log4j2;

@@ -1,13 +1,17 @@
 package cucumber.demoqa.bookstoreapp.login;
 
-import cucumber.demoqa.bookstoreapp.login.pages.LoginPage;
+import cucumber.demoqa.bookstoreapp.login.page.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import utils.AbstractTest;
-import utils.webdriver.WebDriverUtils;
+import util.AbstractTest;
+import util.reportportal.RPScreenshooter;
+import util.webdriver.WebDriverWrapper;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
+import static util.operation.OperationUtils.ifException;
 
 public class LoginTest extends AbstractTest<LoginPage>
 {
@@ -27,6 +31,6 @@ public class LoginTest extends AbstractTest<LoginPage>
     @Then("user succesfully logged in")
     public void userSuccesfullyLoggedIn()
     {
-        assertEquals("https://demoqa.com/login", new WebDriverUtils().asJS().getWindowLocationHref());
+        assertEquals("https://demoqa.com/login", new WebDriverWrapper().asJS().getWindowLocationHref());
     }
 }

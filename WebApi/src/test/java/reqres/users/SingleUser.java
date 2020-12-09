@@ -1,12 +1,12 @@
 package reqres.users;
 
 import org.junit.jupiter.api.Test;
-import web.utils.json.JsonValidatorUtils;
+import web.util.json.JsonValidatorUtils;
 
 import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static org.hamcrest.Matchers.is;
-import static web.utils.json.JsonUtils.toJsonObject;
+import static web.util.json.JsonUtils.toJsonObject;
 
 public class SingleUser extends AbstractUsersApiTest
 {

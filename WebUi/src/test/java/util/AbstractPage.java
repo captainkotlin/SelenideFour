@@ -1,10 +1,10 @@
-package utils;
+package util;
 
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 
-public abstract class AbstractPage<Page extends AbstractPage<Page>> {
-
+public abstract class AbstractPage
+{
     public SelenideElement typeText(SelenideElement webElement, String text)
     {
         webElement.click();

@@ -1,8 +1,8 @@
 package reqres.users;
 
 import org.junit.jupiter.api.Test;
-import utils.matchers.ParseableAsInteger;
-import utils.matchers.ParseableAsZonedDateTime;
+import util.matcher.ParseableAsInteger;
+import util.matcher.ParseableAsZonedDateTime;
 
 import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_CREATED;

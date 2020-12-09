@@ -1,9 +1,8 @@
 package reqres.users;
 
 import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
-import web.utils.AbstractApiTest;
+import web.util.AbstractApiTest;
 
 import java.io.File;
 

@@ -1,13 +1,13 @@
-package cucumber.demoqa.bookstoreapp.login.pages;
+package cucumber.demoqa.bookstoreapp.login.page;
 
 import com.codeborne.selenide.SelenideElement;
 import org.springframework.stereotype.Component;
-import utils.AbstractPage;
+import util.AbstractPage;
 
 import static com.codeborne.selenide.Selenide.$;
 
 @Component
-public class LoginPage extends AbstractPage<LoginPage>
+public class LoginPage extends AbstractPage
 {
     private final SelenideElement userNameField = $("#userName");
     private final SelenideElement passwordField = $("#password");

@@ -2,8 +2,8 @@ package reqres.users;
 
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
-import web.utils.BodyMatcher;
-import web.utils.Responsify;
+import web.util.BodyMatcher;
+import web.util.Responsify;
 
 import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_OK;

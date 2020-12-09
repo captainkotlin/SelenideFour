@@ -1,4 +1,4 @@
-package utils.webdriver;
+package util.webdriver;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;

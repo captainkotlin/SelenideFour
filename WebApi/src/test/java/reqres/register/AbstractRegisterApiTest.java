@@ -2,7 +2,7 @@ package reqres.register;
 
 import io.restassured.builder.RequestSpecBuilder;
 import org.junit.jupiter.api.BeforeAll;
-import web.utils.AbstractApiTest;
+import web.util.AbstractApiTest;
 
 public class AbstractRegisterApiTest extends AbstractApiTest
 {

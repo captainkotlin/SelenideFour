@@ -1,4 +1,4 @@
-package web.utils;
+package web.util;
 
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
@@ -8,14 +8,10 @@ import io.restassured.response.Response;
 import io.restassured.specification.*;
 import org.hamcrest.Matcher;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BinaryOperator;
 import java.util.function.Function;
-
-import static io.restassured.RestAssured.withArgs;
 
 public class Responsify implements ResponseSpecification
 {

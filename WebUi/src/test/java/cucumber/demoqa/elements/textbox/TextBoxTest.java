@@ -1,10 +1,10 @@
 package cucumber.demoqa.elements.textbox;
 
-import cucumber.demoqa.elements.textbox.pages.TextBoxPage;
+import cucumber.demoqa.elements.textbox.page.TextBoxPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import utils.AbstractTest;
+import util.AbstractTest;
 
 public class TextBoxTest extends AbstractTest<TextBoxPage>
 {

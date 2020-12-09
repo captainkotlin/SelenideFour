@@ -11,9 +11,9 @@ import static io.restassured.RestAssured.given;
 import static java.net.HttpURLConnection.HTTP_CREATED;
 import static java.net.HttpURLConnection.HTTP_OK;
 import static org.hamcrest.Matchers.hasKey;
-import static utils.matchers.ParseableAsInteger.parseableAsInteger;
-import static utils.matchers.InRangeMatcher.inRange;
-import static utils.matchers.ParseableAsZonedDateTime.parseableAsZonedDateTime;
+import static util.matcher.ParseableAsInteger.parseableAsInteger;
+import static util.matcher.InRangeMatcher.inRange;
+import static util.matcher.ParseableAsZonedDateTime.parseableAsZonedDateTime;
 
 @Log4j2
 public class RegisterSuccessful extends AbstractRegisterApiTest

@@ -1,13 +1,13 @@
-package cucumber.demoqa.elements.textbox.pages;
+package cucumber.demoqa.elements.textbox.page;
 
 import com.codeborne.selenide.SelenideElement;
 import org.springframework.stereotype.Component;
-import utils.AbstractPage;
+import util.AbstractPage;
 
 import static com.codeborne.selenide.Selenide.$;
 
 @Component
-public class TextBoxPage extends AbstractPage<TextBoxPage>
+public class TextBoxPage extends AbstractPage
 {
     private final SelenideElement fullNameField = $("#userName");
     private final SelenideElement emailField = $("#userEmail");

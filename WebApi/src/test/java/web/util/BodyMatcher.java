@@ -1,4 +1,4 @@
-package web.utils;
+package web.util;
 
 import io.restassured.specification.Argument;
 import lombok.Data;
@@ -8,8 +8,6 @@ import org.hamcrest.Matcher;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static io.restassured.RestAssured.withArgs;
 
 @Data
 public class BodyMatcher

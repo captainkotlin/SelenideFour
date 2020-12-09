@@ -2,7 +2,7 @@ package reqres.unknown;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import web.utils.json.JsonUtils;
+import web.util.json.JsonUtils;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;

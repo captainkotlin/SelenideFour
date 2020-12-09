@@ -1,11 +1,11 @@
-package utils.matchers;
+package util.matcher;
 
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 
 import java.time.ZonedDateTime;
 
-import static utils.matchers.OperationUtils.completesWithoutException;
+import static util.operation.OperationUtils.completesWithoutException;
 
 public class ParseableAsZonedDateTime extends BaseMatcher<String>
 {

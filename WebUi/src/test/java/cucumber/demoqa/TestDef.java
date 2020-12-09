@@ -1,7 +1,7 @@
 package cucumber.demoqa;
 
-import cucumber.demoqa.bookstoreapp.login.pages.LoginPage;
-import cucumber.demoqa.elements.textbox.pages.TextBoxPage;
+import cucumber.demoqa.bookstoreapp.login.page.LoginPage;
+import cucumber.demoqa.elements.textbox.page.TextBoxPage;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.spring.CucumberContextConfiguration;

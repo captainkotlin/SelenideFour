@@ -1,4 +1,4 @@
-package web.utils.json;
+package web.util.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.path.json.JsonPath;
