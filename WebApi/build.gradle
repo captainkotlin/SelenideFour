@@ -43,14 +43,13 @@ dependencies {
 compileTestJava {
     inputs.property "moduleName", "$moduleName"
     doFirst {
-        options.compilerArgs = [ "--module-path", classpath.asPath,
-                "--add-modules", "selenidefour",
-                "--add-modules", "org.junit.jupiter.api",
-                "--add-modules", "com.fasterxml.jackson.databind",
-                "--add-modules", "org.apache.logging.log4j",
-                "--add-modules", "lombok",
-                "--add-modules", "java.validation"
-        ]
+        options.compilerArgs = ["--module-path", classpath.asPath]
+        options.compilerArgs.addAll(addModules("selenidefour",
+                "org.junit.jupiter.api",
+                "com.fasterxml.jackson.databind",
+                "org.apache.logging.log4j",
+                "lombok",
+                "java.validation"))
         classpath = files()
     }
 }
