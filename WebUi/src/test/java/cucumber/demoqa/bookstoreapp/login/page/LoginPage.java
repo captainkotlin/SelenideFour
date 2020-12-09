@@ -7,7 +7,7 @@ import util.AbstractPage;
 import static com.codeborne.selenide.Selenide.$;
 
 @Component
-public class LoginPage extends AbstractPage
+public class LoginPage extends AbstractPage<LoginPage>
 {
     private final SelenideElement userNameField = $("#userName");
     private final SelenideElement passwordField = $("#password");

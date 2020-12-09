@@ -2,6 +2,7 @@
 *.iml
 .idea
 out
+debug.*
 
 # Gradle
 .gradle

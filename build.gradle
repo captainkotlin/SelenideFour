@@ -47,6 +47,7 @@ allprojects {
 dependencies {
     implementation group: 'org.hamcrest', name: 'hamcrest-core', version: '2.2'
     implementation group: 'com.google.guava', name: 'guava', version: "$guavaVer"
+    implementation group: 'junit', name: 'junit', version: '4.13.1'
 }
 
 compileJava {
