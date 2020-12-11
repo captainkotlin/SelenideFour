@@ -3,6 +3,8 @@ package reqres.register;
 import com.epam.reportportal.annotations.Step;
 import com.epam.reportportal.annotations.TestCaseId;
 import com.epam.reportportal.message.ReportPortalMessage;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.config.XmlConfig;
 import io.restassured.http.ContentType;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -23,10 +25,8 @@ public class RegisterSuccessful extends AbstractRegisterApiTest
     @Step(value = "StepMain", description = "Descr main")
     public void registerSuccessful()
     {
-        var port = new ReportPortalMessage("Logged message");
-        log.fatal(port);
-        log.info(new ReportPortalMessage("Hello world"));
         given(requestSpecification)
+                .config(RestAssuredConfig.config().xmlConfig(XmlConfig.xmlConfig().with().namespaceAware(true)))
                 .log().all()
                 .contentType(ContentType.JSON)
                 .body("{\n" +

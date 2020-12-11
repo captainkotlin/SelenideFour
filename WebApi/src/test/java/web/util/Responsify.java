@@ -64,7 +64,7 @@ public class Responsify implements ResponseSpecification
         return this;
     }
 
-    public Responsify bodyMatches(String bodyFormat, BodyMatcher... bodyMatchers)
+    public <T> Responsify bodyMatches(String bodyFormat, BodyMatcher<T>... bodyMatchers)
     {
         Responsify responsify = null;
         for (var bodyMatcher : bodyMatchers)
@@ -74,7 +74,7 @@ public class Responsify implements ResponseSpecification
         return responsify;
     }
 
-    public Responsify bodyMatch(BodyMatcher bodyMatcher)
+    public <T> Responsify bodyMatch(BodyMatcher<T> bodyMatcher)
     {
         return body(bodyMatcher.getMatcher(), bodyMatcher.getFormat(), bodyMatcher.getArgs());
     }
@@ -85,12 +85,12 @@ public class Responsify implements ResponseSpecification
         return responseSpecification.body(s, list, matcher, objects);
     }
 
-    public Responsify body(Matcher matcher, String s, List<Argument> args)
+    public <T> Responsify body(Matcher<T> matcher, String s, List<Argument> args)
     {
         return Responsify.of(responseSpecification.body(s, args, matcher));
     }
 
-    public Responsify body(Matcher matcher, List<Argument> args)
+    public <T> Responsify body(Matcher<T> matcher, List<Argument> args)
     {
         return Responsify.of(responseSpecification.body(bodyFormat, args, matcher));
     }
