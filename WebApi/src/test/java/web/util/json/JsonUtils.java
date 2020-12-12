@@ -3,6 +3,7 @@ package web.util.json;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.path.json.JsonPath;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 
 public class JsonUtils
 {
@@ -15,6 +16,6 @@ public class JsonUtils
 
     public static Object toJsonObject(String body)
     {
-        return new JsonPath(body).getObject("", Object.class);
+        return new JsonPath(body).getObject(StringUtils.EMPTY, Object.class);
     }
 }

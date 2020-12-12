@@ -6,7 +6,9 @@ import io.restassured.matcher.DetailedCookieMatcher;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
 import io.restassured.specification.*;
+import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.Matcher;
+
 
 import java.util.List;
 import java.util.Map;
@@ -16,7 +18,7 @@ import java.util.function.Function;
 public class Responsify implements ResponseSpecification
 {
     private ResponseSpecification responseSpecification;
-    private String bodyFormat;
+    private String bodyFormat = StringUtils.EMPTY;
 
     public Responsify(ResponseSpecification responseSpecification)
     {
@@ -60,11 +62,23 @@ public class Responsify implements ResponseSpecification
 
     public Responsify unsetBodyFormat()
     {
-        bodyFormat = null;
+        bodyFormat = StringUtils.EMPTY;
         return this;
     }
 
-    public <T> Responsify bodyMatches(String bodyFormat, BodyMatcher<T>... bodyMatchers)
+    @SafeVarargs
+    public final <T> Responsify bodyMatches(String bodyFormat, BodyMatcher<T>... bodyMatchers)
+    {
+        Responsify responsify = null;
+        for (var bodyMatcher : bodyMatchers)
+        {
+            responsify = body(bodyMatcher.getMatcher(), bodyFormat, bodyMatcher.getArgs());
+        }
+        return responsify;
+    }
+
+    @SafeVarargs
+    public final <T> Responsify bodyMatches(BodyMatcher<T>... bodyMatchers)
     {
         Responsify responsify = null;
         for (var bodyMatcher : bodyMatchers)

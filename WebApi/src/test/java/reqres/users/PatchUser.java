@@ -1,5 +1,6 @@
 package reqres.users;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -20,7 +21,7 @@ public class PatchUser extends AbstractUsersApiTest
                 .expect()
                 .log().all()
                 .statusCode(HTTP_OK)
-                .body("", hasKey("updatedAt"))
+                .body(StringUtils.EMPTY, hasKey("updatedAt"))
                 .when()
                 .patch();
     }

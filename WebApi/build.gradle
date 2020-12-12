@@ -27,6 +27,9 @@ dependencies {
     testImplementation(group: 'io.rest-assured', name: 'rest-assured', version: "$restAssuredVer") {
         exclude group: "org.codehaus.groovy"
     }
+    testImplementation (group: 'io.rest-assured', name: 'xml-path', version: "$restAssuredVer") {
+        exclude group: "org.codehaus.groovy"
+    }
     testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.3'
     testImplementation group: 'com.networknt', name: 'json-schema-validator', version: '1.0.45'
     testImplementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
@@ -46,6 +49,7 @@ compileTestJava {
         options.compilerArgs = ["--module-path", classpath.asPath]
         options.compilerArgs.addAll(addModules("selenidefour",
                 "org.junit.jupiter.api",
+                "org.junit.jupiter.params",
                 "com.fasterxml.jackson.databind",
                 "org.apache.logging.log4j",
                 "lombok",

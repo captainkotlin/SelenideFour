@@ -17,9 +17,9 @@ public class ListUsers extends AbstractUsersApiTest
     {
         var formatStr = "data[%d].%s";
         var emailStr = "email";
-        var emailA = new BodyMatcher(equalTo("lindsay.ferguson@reqres.in"),  1, emailStr);
-        var emailB = new BodyMatcher(equalTo("tobias.funke@reqres.in"), 2, emailStr);
-        var dataSize = new BodyMatcher(is(6), "data.size()");
+        var emailA = new BodyMatcher<>(equalTo("lindsay.ferguson@reqres.in"),  1, emailStr);
+        var emailB = new BodyMatcher<>(equalTo("tobias.funke@reqres.in"), 2, emailStr);
+        var dataSize = new BodyMatcher<>(is(6), "data.size()");
 
         var responseStr = Responsify.of(given(requestSpecification)
                 .queryParam("page", 2)

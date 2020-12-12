@@ -37,6 +37,7 @@ allprojects {
         testImplementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4j2Ver"
         testImplementation "com.epam.reportportal:logger-java-log4j:$reportPortalAgentVer"
 
+        testImplementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
         testImplementation group: 'com.google.guava', name: 'guava', version: "$guavaVer"
 
         testCompileOnly "org.projectlombok:lombok:$lombokVer"

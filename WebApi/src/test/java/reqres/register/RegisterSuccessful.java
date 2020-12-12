@@ -7,6 +7,7 @@ import io.restassured.config.RestAssuredConfig;
 import io.restassured.config.XmlConfig;
 import io.restassured.http.ContentType;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -36,7 +37,7 @@ public class RegisterSuccessful extends AbstractRegisterApiTest
                 .expect()
                 .log().all()
                 .body("id", parseableAsInteger())
-                .body("", hasKey("createdAt"))
+                .body(StringUtils.EMPTY, hasKey("createdAt"))
                 .body("createdAt", parseableAsZonedDateTime())
                 .statusCode(inRange(HTTP_OK, HTTP_CREATED))
                 .when()
