@@ -62,4 +62,7 @@ test {
     systemProperties System.getProperties()
     testLogging.showStandardStreams = true
     useJUnitPlatform()
+    testLogging {
+        events "standardOut", "started", "passed", "skipped", "failed"
+    }
 }
