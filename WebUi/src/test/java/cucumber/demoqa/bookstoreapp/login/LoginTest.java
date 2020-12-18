@@ -31,6 +31,7 @@ public class LoginTest extends AbstractTest<LoginPage>
     @Then("user succesfully logged in")
     public void userSuccesfullyLoggedIn()
     {
-        assertEquals("https://demoqa.com/login", new WebDriverWrapper().asJS().getWindowLocationHref());
+        sleep(2);
+        assertEquals("https://demoqa.com/profile", new WebDriverWrapper().asJS().getWindowLocationHref());
     }
 }

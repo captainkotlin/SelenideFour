@@ -1,5 +1,6 @@
 package util;
 
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -23,6 +24,12 @@ public class AbstractTest<Page extends AbstractPage<Page>>
     public <T> void equalityAssert(Function<Page, T> mapper, T expectedValue)
     {
         assertThat(mapper.apply(page), equalTo(expectedValue));
+    }
+
+    @SneakyThrows
+    protected void sleep(int seconds)
+    {
+        Thread.sleep(seconds * 1000L);
     }
 
     private ExpectedException getExpectedExceptionRule()
