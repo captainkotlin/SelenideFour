@@ -1,6 +1,8 @@
 package cucumber.demoqa.bookstoreapp.draggable;
 
 import cucumber.demoqa.bookstoreapp.draggable.page.SimpleDraggablePage;
+
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Point;
